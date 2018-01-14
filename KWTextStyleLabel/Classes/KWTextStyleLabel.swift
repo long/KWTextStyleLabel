@@ -41,16 +41,17 @@ import UIKit
   override open var text: String? {
     didSet {
       let attributedString = NSMutableAttributedString(string: text!)
-      attributedString.addAttribute(NSKernAttributeName, value: characterSpacing, range: NSMakeRange(0, text!.characters.count))
+      attributedString.addAttribute(NSAttributedStringKey.kern, value: characterSpacing, range: NSMakeRange(0, text!.count))
       
       if lineGap != 0 {
         let paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineSpacing = lineGap
         paragraphStyle.alignment = textAlignment
-        attributedString.addAttribute(NSParagraphStyleAttributeName, value: paragraphStyle, range: NSMakeRange(0, text!.characters.count))
+        attributedString.addAttribute(NSAttributedStringKey.paragraphStyle, value: paragraphStyle, range: NSMakeRange(0, text!.count))
       }
       
       attributedText = attributedString
     }
   }
 }
+
